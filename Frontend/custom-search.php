@@ -24,202 +24,164 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="#hero" class="logo"><img src="PicsArt_12-11-06.58.40.jpg" alt="logo" class="img-fluid"></a>
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <!--
+            Icon when menu is closed.
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+            Heroicon name: outline/menu
 
-    </div>
-  </header><!-- End Header -->
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!--
+            Icon when menu is open.
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+            Heroicon name: outline/x
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <form id="Submit" action="#" method="POST" class="formSegments">
-          <div class="form-group mb-2">
-            <label for="UnprocessedImage"><h2>Upload Image Here</h2></label>       
-          </div>
-          <div class="form-group mb-2">
-            <input type="file" class="form-control-file" id="UnprocessedImage">
-          </div>
-          <div class="form-group mb-2">
-            <button type="button" class="btn btn-primary" onclick = "functionmyfunction()" id="btnSubmit" value="Submit">Submit</button>
-          </div>
-        </form>
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-shrink-0 flex items-center">
+          <img class="hidden lg:block h-8 w-auto" src="./OCR icon.png" alt="Workflow">
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="istockphoto-1289388658-612x612-removebg-preview.png" class="img-fluid animated" alt="">
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="./index.php" class=" text-gray-300 px-3 py-2 rounded-md text-sm font-medium" >Home</a>
+
+            <a href="./ocr.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">OCR</a>
+
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+
+            <a href="./custom-search.php" class=" bg-gray-900 text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Custom Search</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-  </section><!-- End Hero -->
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a href="./index.php" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium" >Home</a>
+
+      <a href="./ocr.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">OCR</a>
+
+      <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Notes</a>
+
+      <a href="./custom-search.php" class="bg-gray-900 text-white hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Custom Search</a>
+    </div>
+  </div>
+</nav>
 
   <main id="main">
-
-   
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <div class="container custom-search-box">
+      <h1>Optimised Google search, get only what you want!</h1>
+        <label for="inputPassword5" class="form-label my-3">
+          <strong>PDF Search</strong> 
+        </label>
+        <input
+          id="search_pdf"
+          type="text"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          You must enter some keywords which describes the pdf you want
+        </div>
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3"
+          onclick="pdfsearch()"
+        >
+          Search
+        </button>
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3 mx-3"
+          onclick="pdfclear()"
+        >
+          Clear
+        </button>
+      </div>
       <div class="container">
-
-        <div class="row">
-          <div class="col-lg-6">
-            <img src="assets/img/about.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3><p class="fst-italic">Why use our service at the first place?</p></h3>
-            <ul>
-              <li><i class="bi bi-check-circle"></i>No data logging. </li>
-              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
-            </ul>
-            <p>
-              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
-            </p>
-          </div>
+        <label for="inputPassword5" class="form-label my-3">
+          <strong>MP3 Search</strong> 
+        </label>
+        <input
+          id="search_mp3"
+          type="text"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          You must enter some keywords which describes the mp3 you want
         </div>
-
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3"
+          id="mp3_search"
+          onclick="mp3search()"
+        >
+          Search
+        </button>
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3 mx-3"
+          onclick="mp3clear()"
+        >
+          Clear
+        </button>
       </div>
-    </section><!-- End About Section -->
-
-
-
-     <!-- ======= Team Section ======= -->
-<section id="team" class="team section-bg">
-    <div class="container">
-
-      <div class="section-title">
-        <span>Team</span>
-        <h2>Team</h2>
-        <p>We are a team of computer enthusiasts exploring new opportunities.</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member">
-            <img src="IMG-20210928-WA0007.jpg" alt="Soham Banerjee">
-            <h4>Soham Banerjee</h4>
-            <span>Backend Developer</span>
-            <p>A not so average coder trying to explore oppurtunities.</p>
-            <div class="social">
-              <a target="_blank" href="https://www.instagram.com/debugginglife_02"><i class="bi bi-instagram"></i></a>
-              <a target="_blank" href="https://www.linkedin.com/in/soham-banerjee-6091831b3/"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member">
-            <img src="IMG20191028160454.jpg" alt="Subhadip Dutta">
-            <h4>Subhadip Dutta</h4>
-            <span>Frontend Developer</span>
-            <p>An aspiring coder looking forward to learn new things.</p>
-            <div class="social">
-              <a target="_blank" href="https://www.instagram.com/lol_sudu"><i class="bi bi-instagram"></i></a>
-              <a target="_blank" href="https://www.linkedin.com/in/subhadip-dutta-32b7551b4/"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member">
-            <img src="ssir.jpeg" alt="Sumon Sen">
-            <h4>Sumon Sen</h4>
-            <span>Guide &amp; Server maintainance </span>
-            <p>An experienced coder who guided his sudents with all that they needed.</p>
-            <div class="social">
-              <a target="_blank" href="https://www.instagram.com/im_sumon"><i class="bi bi-instagram"></i></a>
-              <a target="_blank" href="https://www.linkedin.com/in/sumonsenind/"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section><!-- End Team Section -->
-
-  
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
       <div class="container">
-
-        <div class="section-title">
-          <span>Contact</span>
-          <h2>Contact</h2>
-          <p></p>
+        <label for="inputPassword5" class="form-label my-3">
+          <strong>MP4 Search</strong> 
+        </label>
+        <input
+          id="search_mp4"
+          type="text"
+          class="form-control"
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          You must enter some keywords which describes the mp4 you want
         </div>
-
-        <div class="row">
-
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Kolkata, India</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>csenthusiasts@gmail.com</p>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6 mt-3 mt-md-0">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
-        </div>
-
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3"
+          id="mp4_search"
+          onclick="mp4search()"
+        >
+          Search
+        </button>
+        <button
+          type="submit"
+          class="btn btn-outline-dark my-3 mx-3"
+          onclick="mp4clear()"
+        >
+          Clear
+        </button>
       </div>
-    </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
 
@@ -228,7 +190,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>2021</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>2022</span></strong>. All Rights Reserved. By Team -<strong> XYZ </strong>.
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -249,6 +211,48 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <!-- Custom Functions -->
+  <script>
+    function pdfsearch(){
+      // console.log("PDF Search working");
+      var pdf_text = document.getElementById("search_pdf").value;
+      var new_pdf_text = pdf_text + " filetype:pdf";
+      // console.log(new_pdf_text);
+      let sertxt = "https://www.google.com/search?q=";
+      let text = sertxt + new_pdf_text;
+      window.open(text, "_blank")
+
+    }
+    function mp3search(){
+      // console.log("MP3 Search working");
+      var mp3_text = document.getElementById("search_mp3").value;
+      var new_mp3_text = mp3_text + " filetype:mp3";
+      // console.log(new_mp3_text);
+      let sertxt = "https://www.google.com/search?q=";
+      let text = sertxt + new_mp3_text;
+      window.open(text, "_blank")
+
+    }
+    function mp4search(){
+      // console.log("MP4 Search working");
+      var mp4_text = document.getElementById("search_mp4").value;
+      var new_mp4_text = mp4_text + " filetype:mp4";
+      // console.log(new_mp4_text);
+      let sertxt = "https://www.google.com/search?q=";
+      let text = sertxt + new_mp4_text;
+      window.open(text, "_blank")
+    }
+    function pdfclear(){
+      document.getElementById("search_pdf").value = "";
+    }
+    function mp3clear(){
+      document.getElementById("search_mp3").value = "";
+    }
+    function mp4clear(){
+      document.getElementById("search_mp4").value = "";
+    }
+  </script>
 
 </body>
 
