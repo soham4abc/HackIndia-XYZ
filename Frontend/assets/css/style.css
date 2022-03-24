@@ -291,6 +291,17 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+/* Features section starts here */
+
+.row{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Features section ends here */
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/

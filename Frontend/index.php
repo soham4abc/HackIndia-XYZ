@@ -36,10 +36,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="./ocr.php">OCR</a></li>
+          <li><a class="nav-link scrollto" href="#">Notes</a></li>
+          <li><a class="nav-link scrollto" href="./custom-search.php">Custom Search</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -47,31 +46,7 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <form id="Submit" action="#" method="POST" class="formSegments">
-          <div class="form-group mb-2">
-            <label for="UnprocessedImage"><h2>Upload Image Here</h2></label>       
-          </div>
-          <div class="form-group mb-2">
-            <input type="file" class="form-control-file" id="UnprocessedImage">
-          </div>
-          <div class="form-group mb-2">
-            <button type="button" class="btn btn-primary" onclick = "functionmyfunction()" id="btnSubmit" value="Submit">Submit</button>
-          </div>
-        </form>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="istockphoto-1289388658-612x612-removebg-preview.png" class="img-fluid animated" alt="">
-        </div>
-      </div>
-    </div>
-
-  </section><!-- End Hero -->
+  
 
   <main id="main">
 
@@ -82,10 +57,41 @@
 
         <div class="row">
           <div class="col-lg-6">
+            <img src="assets/img/ocr.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3><p class="fst-italic">OCR is perhaps the best features we are providing</p></h3>
+            <ul>
+              <li><i class="bi bi-check-circle"></i>No data logging. </li>
+              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
+            </ul>
+            <p>
+              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3><p class="fst-italic">All notes available here, don't worry about exams.</p></h3>
+            <ul>
+              <li><i class="bi bi-check-circle"></i>No data logging. </li>
+              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
+            </ul>
+            <p>
+              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="assets/img/about.png" class="img-fluid" alt="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
             <img src="assets/img/about.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3><p class="fst-italic">Why use our service at the first place?</p></h3>
+            <h3><p class="fst-italic">Tired of getting wrong google results? Try this out!</p></h3>
             <ul>
               <li><i class="bi bi-check-circle"></i>No data logging. </li>
               <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
@@ -102,7 +108,7 @@
 
 
      <!-- ======= Team Section ======= -->
-<section id="team" class="team section-bg">
+<!-- <section id="team" class="team section-bg">
     <div class="container">
 
       <div class="section-title">
@@ -154,72 +160,10 @@
       </div>
 
     </div>
-  </section><!-- End Team Section -->
+  </section>End Team Section -->
 
   
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <span>Contact</span>
-          <h2>Contact</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>Kolkata, India</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>csenthusiasts@gmail.com</p>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6 mt-3 mt-md-0">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
+    
 
   </main><!-- End #main -->
 
@@ -228,7 +172,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>2021</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>2022</span></strong>. All Rights Reserved. By Team -<strong> XYZ </strong>.
       </div>
     </div>
   </footer><!-- End Footer -->
