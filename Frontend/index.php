@@ -125,7 +125,7 @@
 
         <div class="row">
           <div class="col-lg-6">
-            <img src="assets/img/ocr.png" class="img-fluid" alt="">
+            <img src="./OCR image.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3><p class="fst-italic">OCR is perhaps the best features we are providing</p></h3>
@@ -151,12 +151,12 @@
             </p>
           </div>
           <div class="col-lg-6">
-            <img src="assets/img/about.png" class="img-fluid" alt="">
+            <img src="./Notes.png" class="img-fluid" alt="">
           </div>
         </div>
         <div class="row">
           <div class="col-lg-6">
-            <img src="assets/img/about.png" class="img-fluid" alt="">
+            <img src="./Google search.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3><p class="fst-italic">Tired of getting wrong google results? Try this out!</p></h3>
