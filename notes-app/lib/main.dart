@@ -1,7 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:study_helper/screens/login.dart';
+import 'dart:async';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import '/screens/login.dart';
+import '/screens/signup.dart';
+import '/screens/notes.dart';
+
+Future<void> main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('auth_status');
   runApp(const MyApp());
 }
 
@@ -11,6 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/login': (context) => const Login(),
+        '/signup': (context) => const Signup(),
+        '/notes': (context) => const Notes(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -27,10 +40,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  startTime() async {
+    var _duration = const Duration(seconds: 1);
+    return Timer(_duration, navigationPage);
+  }
+
+  void navigationPage() {
+    if (box.get('auth_status') == null) {
+      Navigator.of(context).popAndPushNamed('/login');
+    } else {
+      Navigator.of(context).popAndPushNamed('/notes');
+    }
+  }
+
+  late final Box box;
+
+  @override
+  void initState() {
+    super.initState();
+    startTime();
+    // Future.delayed(Duration.zero, () {
+    //   Navigator.pushNamed(context, '/login');
+    // });
+    box = Hive.box('auth_status');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Login(),
-    );
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }
