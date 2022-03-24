@@ -18,6 +18,7 @@ CORS(app, supports_credentials=True)
 class Users(Resource):
     # methods go here
     def post(self):
+        
         parser = reqparse.RequestParser()  # initialize
 
         parser.add_argument("data", required=True)
@@ -30,17 +31,17 @@ class Users(Resource):
         data = pd.read_csv(PERMANENT_PATH + "users.csv")
         # add the newly provided values
         data = data.append(new_data, ignore_index=True)
-        test2.text_to_image(new_data)
+        text=test2.text_to_image(new_data)
         # save back to CSV
         data.to_csv(PERMANENT_PATH + "users.csv", index=False)
-        return {"data": URL + "/documents/MyFile.docx"}, 200
+        return {"data": URL + "/documents/MyFile.docx","text":text}, 200
 
     def get(self):
 
         data = pd.read_csv("./users.csv")  # read CSV
         data = data.to_dict()  # convert dataframe to dictionary
-        return {"data": data}, 200  # return data and 200 OK code
-        # return {'data': "works"}, 200  # return data and 200 OK code
+        #return {"data": data}, 200  # return data and 200 OK code
+        return {'data': "works"}, 200  # return data and 200 OK code
 
     pass
 
