@@ -153,10 +153,9 @@ Future<void> login(BuildContext context) async {
 
   if (response.statusCode == 200) {
     var body = json.decode(response.body);
-    print(body["access_token"]);
     var box = Hive.box('auth_status');
     box.put('auth_status', body["access_token"]);
-    Navigator.popAndPushNamed(context, '/login');
+    Navigator.popAndPushNamed(context, '/notes');
   } else if (response.statusCode == 403) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
