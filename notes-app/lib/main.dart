@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/notes': (context) => const Notes(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF44527F),
       ),
       home: const MyHomePage(),
     );

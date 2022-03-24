@@ -140,7 +140,7 @@ InputDecoration _inputDecoration(String text) {
 }
 
 Future<void> login(BuildContext context) async {
-  var match = {
+  var details = {
     "username": globals.username.text,
     "password": globals.password.text
   };
@@ -148,7 +148,7 @@ Future<void> login(BuildContext context) async {
   var response = await http.post(
       Uri.parse('http://notes-backend-service.herokuapp.com/login'),
       headers: {"Accept": "*/*", "Content-Type": "application/json"},
-      body: json.encode(match),
+      body: json.encode(details),
       encoding: Encoding.getByName("utf-8"));
 
   if (response.statusCode == 200) {

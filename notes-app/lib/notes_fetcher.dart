@@ -5,7 +5,7 @@ import 'model/note.dart';
 
 import 'package:http/http.dart' as http;
 
-Future<void> getNotes() async {
+Future<List<Note>> getNotes() async {
   var box = Hive.box('auth_status');
   String jwt = box.get('auth_status');
   final response = await http.get(
@@ -30,4 +30,6 @@ Future<void> getNotes() async {
     );
     notes.add(note);
   }
+
+  return notes;
 }
