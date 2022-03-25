@@ -22,6 +22,7 @@ def image_to_text(path):
 
     mydoc.add_paragraph(finaltext)
     mydoc.save("../../Frontend/documents/MyFile.docx")
+    return text
 
     cv2.waitKey(0)
 

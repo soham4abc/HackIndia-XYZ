@@ -14,4 +14,5 @@ def text_to_image(datatext):
     im = Image.open(BytesIO(base64.b64decode(data)))
 
     im.save("image.png", "PNG")
-    ocr2.image_to_text("image.png")
+    text=ocr2.image_to_text("image.png")
+    return text
