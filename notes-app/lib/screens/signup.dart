@@ -37,6 +37,7 @@ class Signup extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20.0),
                             child: TextField(
+                              obscureText: true,
                               controller: globals.password,
                               decoration: _inputDecoration('Password'),
                             ),
