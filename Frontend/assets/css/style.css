@@ -321,6 +321,8 @@ h1, h2, h3, h4, h5, h6 {
 .img-fluid{
   border-radius: 5rem;
   height: 274.93;
+  max-width: 65%;
+  margin-right: 20%;
 }
 .uploadform{
   margin-left: 5rem;

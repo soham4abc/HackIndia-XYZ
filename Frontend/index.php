@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>jpg to txt</title>
-  <meta content="" name="description">
+  <title>Study Helper</title>
+  <meta content="An application with multiple features | Optical Character Recognition | Notes | Customized search" name="description">
   <meta content="" name="keywords">
 
   <link href="" rel="icon">
@@ -54,7 +54,7 @@
     <div class="relative flex items-center justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" onclick="DisplayMobile()">
           <span class="sr-only">Open main menu</span>
           <!--
             Icon when menu is closed.
@@ -99,7 +99,7 @@
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
+  <div class="hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
       <a href="./index.php" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
@@ -130,11 +130,11 @@
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3><p class="fst-italic">OCR is perhaps the best features we are providing</p></h3>
             <ul>
-              <li><i class="bi bi-check-circle"></i>No data logging. </li>
-              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
+              <li><i class="bi bi-check-circle"></i>This OCR software helps you to achieve higher productivity by facilitating quicker data retrieval when required. </li>
+              <li><i class="bi bi-check-circle"></i>Automated data entry tool results in reduced errors and inaccuracies, resulting in efficient data entry. </li>
             </ul>
             <p>
-              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
+              We value your productivity, accuracy and privacy as much you do. Our server is regularly inspected to keep it secure.
             </p>
           </div>
         </div>
@@ -143,11 +143,11 @@
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3><p class="fst-italic">All notes available here, don't worry about exams.</p></h3>
             <ul>
-              <li><i class="bi bi-check-circle"></i>No data logging. </li>
-              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
+              <li><i class="bi bi-check-circle"></i>Students? Teachers? A learner? Don't worry, this application is for you all to take and keep urgent notes instantly. </li>
+              <li><i class="bi bi-check-circle"></i>A ready to search option to find your most needy note at least time.</li>
             </ul>
             <p>
-              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
+              An efficient part of our application for your help in educational growth.
             </p>
           </div>
           <div class="col-lg-6">
@@ -161,11 +161,11 @@
           <div class="col-lg-6 pt-4 pt-lg-0 content">
             <h3><p class="fst-italic">Tired of getting wrong google results? Try this out!</p></h3>
             <ul>
-              <li><i class="bi bi-check-circle"></i>No data logging. </li>
-              <li><i class="bi bi-check-circle"></i>Updated regularly to provide you with the best user experience. </li>
+              <li><i class="bi bi-check-circle"></i>Optimised google search so that you can reach to your result instantly with less effort. </li>
+              <li><i class="bi bi-check-circle"></i>Search category wise, get categorized result. </li>
             </ul>
             <p>
-              We value your privacy as much you do. Our server is regularly inspected to keep it secure.
+              Smart search, save time.
             </p>
           </div>
         </div>
