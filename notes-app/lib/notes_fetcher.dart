@@ -10,7 +10,7 @@ Future<List<Note>> getNotes(String search) async {
   String jwt = box.get('auth_status');
   final response = await http.get(
       Uri.parse(
-          'http://notes-backend-service.herokuapp.com/notes?search=$search'),
+          'https://notes-backend-service.herokuapp.com/notes?search=$search'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

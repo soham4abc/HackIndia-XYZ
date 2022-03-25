@@ -143,7 +143,7 @@ Future<void> signup(BuildContext context) async {
   };
 
   var response = await http.post(
-      Uri.parse('http://notes-backend-service.herokuapp.com/users'),
+      Uri.parse('https://notes-backend-service.herokuapp.com/users'),
       headers: {"Accept": "*/*", "Content-Type": "application/json"},
       body: json.encode(match),
       encoding: Encoding.getByName("utf-8"));

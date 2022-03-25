@@ -146,7 +146,7 @@ Future<void> login(BuildContext context) async {
   };
 
   var response = await http.post(
-      Uri.parse('http://notes-backend-service.herokuapp.com/login'),
+      Uri.parse('https://notes-backend-service.herokuapp.com/login'),
       headers: {"Accept": "*/*", "Content-Type": "application/json"},
       body: json.encode(details),
       encoding: Encoding.getByName("utf-8"));

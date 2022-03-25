@@ -210,7 +210,7 @@ class _NotesState extends State<Notes> {
     String jwt = box.get('auth_status');
 
     var response = await http.delete(
-        Uri.parse('http://notes-backend-service.herokuapp.com/notes/$index'),
+        Uri.parse('https://notes-backend-service.herokuapp.com/notes/$index'),
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
@@ -235,7 +235,7 @@ class _NotesState extends State<Notes> {
     String jwt = box.get('auth_status');
 
     var response = await http.put(
-        Uri.parse('http://notes-backend-service.herokuapp.com/notes/$index'),
+        Uri.parse('https://notes-backend-service.herokuapp.com/notes/$index'),
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
@@ -265,7 +265,7 @@ class _NotesState extends State<Notes> {
 
     var response = await http.post(
         Uri.parse(
-            'http://notes-backend-service.herokuapp.com/notes?sort_by_update_time=true'),
+            'https://notes-backend-service.herokuapp.com/notes?sort_by_update_time=true'),
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
