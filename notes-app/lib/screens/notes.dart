@@ -6,6 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:study_helper/notes_fetcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:study_helper/screens/search_notes.dart';
 
 import '../model/note.dart';
 
@@ -82,8 +83,10 @@ class _NotesState extends State<Notes> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              onPressed: () {
+              onPressed: () async {
+                await deleteNote(note.id);
                 Navigator.of(context).pop();
+                setState(() {});
               },
             ),
             MaterialButton(
@@ -183,20 +186,45 @@ class _NotesState extends State<Notes> {
 
   late final _noteTitle;
   late final _noteBody;
-  String isReverse = 'true';
+  late final _searchTerm;
 
   @override
   void initState() {
     super.initState();
     _noteTitle = TextEditingController();
     _noteBody = TextEditingController();
+    _searchTerm = TextEditingController();
   }
 
   @override
   void dispose() {
     _noteTitle.dispose();
     _noteBody.dispose();
+    _searchTerm.dispose();
     super.dispose();
+  }
+
+//DELETE NOTE FUNCTION
+  Future<void> deleteNote(int index) async {
+    var box = Hive.box('auth_status');
+    String jwt = box.get('auth_status');
+
+    var response = await http.delete(
+        Uri.parse('http://notes-backend-service.herokuapp.com/notes/$index'),
+        headers: {
+          "Accept": "*/*",
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $jwt',
+        },
+        encoding: Encoding.getByName("utf-8"));
+
+    if (response.statusCode == 404 || response.statusCode == 401) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error deleting the note. Try again.'),
+        ),
+      );
+    }
   }
 
 //UPDATE NOTE FUNCTION
@@ -237,7 +265,7 @@ class _NotesState extends State<Notes> {
 
     var response = await http.post(
         Uri.parse(
-            'http://notes-backend-service.herokuapp.com/notes?sort_by_update_time=$isReverse'),
+            'http://notes-backend-service.herokuapp.com/notes?sort_by_update_time=true'),
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
@@ -269,54 +297,32 @@ class _NotesState extends State<Notes> {
               padding: EdgeInsets.symmetric(
                   horizontal: width * 0.25, vertical: height * 0.01),
               child: TextField(
+                controller: _searchTerm,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15)),
                   hintText: 'Search',
                   contentPadding: const EdgeInsets.all(25.0),
-                  suffixIcon: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      MaterialButton(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.02,
-                              horizontal:
-                                  MediaQuery.of(context).size.height * 0.03),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: const Color(0xFF44527F),
-                          ),
-                          child: const Text(
-                            'Rearrange!',
-                            style: TextStyle(
-                                fontSize: 22,
-                                letterSpacing: 1.8,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isReverse == 'true'
-                                ? isReverse = 'false'
-                                : isReverse = 'true';
-                          });
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.search),
-                        onPressed: () {},
-                      ),
-                    ],
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () async {
+                      await getNotes(_searchTerm.text).then((value) {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (context) => NotesSearch(
+                        //       note: value,
+                        //     ),
+                        //   ),
+                        // );
+                      });
+                    },
                   ),
                 ),
               ),
             ),
             Expanded(
               child: FutureBuilder(
-                future: getNotes(),
+                future: getNotes(''),
                 builder: (context, snapshot) {
                   if (snapshot.data != null) {
                     var data = (snapshot.data as List<Note>).toList();

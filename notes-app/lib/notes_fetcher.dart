@@ -5,11 +5,12 @@ import 'model/note.dart';
 
 import 'package:http/http.dart' as http;
 
-Future<List<Note>> getNotes() async {
+Future<List<Note>> getNotes(String search) async {
   var box = Hive.box('auth_status');
   String jwt = box.get('auth_status');
   final response = await http.get(
-      Uri.parse('http://notes-backend-service.herokuapp.com/notes'),
+      Uri.parse(
+          'http://notes-backend-service.herokuapp.com/notes?search=$search'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

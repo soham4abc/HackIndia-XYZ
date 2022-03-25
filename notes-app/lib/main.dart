@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '/screens/login.dart';
 import '/screens/signup.dart';
 import '/screens/notes.dart';
+import 'screens/search_notes.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/notes': (context) => const Notes(),
       },
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        focusColor: const Color(0xFF44527F),
         primaryColor: const Color(0xFF44527F),
       ),
       home: const MyHomePage(),
