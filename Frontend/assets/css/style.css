@@ -323,9 +323,16 @@ h1, h2, h3, h4, h5, h6 {
   height: 274.93;
   max-width: 65%;
   margin-right: 20%;
+  align-items: center;
+}
+.header-text{
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Copperplate, Papyrus, fantasy;
 }
 .uploadform{
-  margin-left: 5rem;
+  align-items: center;
 }
 
 #hero {
@@ -399,6 +406,13 @@ h1, h2, h3, h4, h5, h6 {
   #hero .hero-img img {
     width: 50%;
   }
+  .img-fluid{
+    border-radius: 5rem;
+    height: 100%;
+    max-width: 100%;
+    align-items: center;
+    
+  }
 }
 @media (max-width: 768px) {
   #hero {
@@ -419,7 +433,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-width: 575px) {
   #hero .hero-img img {
-    width: 80%;
+    width: 100%;
   }
 }
 

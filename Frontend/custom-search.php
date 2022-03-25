@@ -97,6 +97,9 @@
 
   <main id="main">
     <div class="container custom-search-box">
+    <div class="items-center justify-between mb-10">
+          <h1 class="header-text">Customised G Search</h1>
+    </div>
       <h1>Optimised Google search, get only what you want!</h1>
         <label for="inputPassword5" class="form-label my-3">
           <strong>PDF Search</strong> 

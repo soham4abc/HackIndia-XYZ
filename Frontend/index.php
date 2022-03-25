@@ -122,9 +122,14 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
+      <div class="items-center justify-between mb-10">
+          <h1 class="header-text">Study Helper</h1>
+          </div>
 
         <div class="row">
-          <div class="col-lg-6">
+          
+          
+          <div class="col-lg-6 items-center justify-between">
             <img src="./OCR image.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content">
