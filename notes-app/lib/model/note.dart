@@ -5,7 +5,7 @@ class Note {
   String lastUpdtAt;
   String crtdAt;
 
-  Note ({
+  Note({
     required this.title,
     required this.id,
     required this.body,

@@ -20,7 +20,7 @@ Future<List<Note>> getNotes() async {
 
   List<Note> notes = [];
 
-  for (int i = 0; i < body.length; i++) {
+  for (int i = body.length - 1; i >= 0; i--) {
     Note note = Note(
       id: body[i]['id'],
       title: body[i]['title'],

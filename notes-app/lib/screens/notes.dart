@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -24,10 +25,101 @@ class _NotesState extends State<Notes> {
     );
   }
 
-  Future<void> _showMyDialog() async {
+//DIALOG FOR UPDATING NOTE
+  Future<void> _showUpdateDeleteNoteDialog(Note note) async {
+    _noteBody.text = note.body;
+    _noteTitle.text = note.title;
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Update the note',
+            style: TextStyle(
+                fontSize: 25,
+                letterSpacing: 1.8,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+          content: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: _noteTitle,
+                  decoration: _inputDecoration('Add note title...'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: TextField(
+                    maxLines: 20,
+                    minLines: 15,
+                    controller: _noteBody,
+                    decoration: _inputDecoration('Add note body...'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            MaterialButton(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.02,
+                    horizontal: MediaQuery.of(context).size.height * 0.03),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: const Color(0xFF44527F),
+                ),
+                child: const Text(
+                  'Delete',
+                  style: TextStyle(
+                      fontSize: 22,
+                      letterSpacing: 1.8,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            MaterialButton(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.02,
+                    horizontal: MediaQuery.of(context).size.height * 0.03),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: const Color(0xFF44527F),
+                ),
+                child: const Text(
+                  'Update!',
+                  style: TextStyle(
+                      fontSize: 22,
+                      letterSpacing: 1.8,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              onPressed: () async {
+                await updateNote(note.id);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+//DIALOG FOR ADDING NEW NOTE
+  Future<void> _showAddNoteDialog() async {
+    _noteBody.text = '';
+    _noteTitle.text = '';
+    return showDialog<void>(
+      context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text(
@@ -64,34 +156,12 @@ class _NotesState extends State<Notes> {
             MaterialButton(
               child: Container(
                 padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.02,
-                horizontal: MediaQuery.of(context).size.height * 0.03),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color(0xFF44527F),
-            ),
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                      fontSize: 22,
-                      letterSpacing: 1.8,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                    vertical: MediaQuery.of(context).size.height * 0.02,
+                    horizontal: MediaQuery.of(context).size.height * 0.03),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: const Color(0xFF44527F),
                 ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            MaterialButton(
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.02,
-                horizontal: MediaQuery.of(context).size.height * 0.03),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color(0xFF44527F),
-            ),
                 child: const Text(
                   'Add!',
                   style: TextStyle(
@@ -101,7 +171,7 @@ class _NotesState extends State<Notes> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              onPressed: () async{
+              onPressed: () async {
                 await addNote();
               },
             ),
@@ -113,6 +183,7 @@ class _NotesState extends State<Notes> {
 
   late final _noteTitle;
   late final _noteBody;
+  String isReverse = 'true';
 
   @override
   void initState() {
@@ -128,6 +199,36 @@ class _NotesState extends State<Notes> {
     super.dispose();
   }
 
+//UPDATE NOTE FUNCTION
+  Future<void> updateNote(int index) async {
+    final note = {"title": _noteTitle.text, "content": _noteBody.text};
+
+    var box = Hive.box('auth_status');
+    String jwt = box.get('auth_status');
+
+    var response = await http.put(
+        Uri.parse('http://notes-backend-service.herokuapp.com/notes/$index'),
+        headers: {
+          "Accept": "*/*",
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $jwt',
+        },
+        body: json.encode(note),
+        encoding: Encoding.getByName("utf-8"));
+
+    if (response.statusCode == 200) {
+      Navigator.of(context).pop();
+      setState(() {});
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Error updating the note. Try again.'),
+        ),
+      );
+    }
+  }
+
+//ADD NOTE FUNCTION
   Future<void> addNote() async {
     final note = {"title": _noteTitle.text, "content": _noteBody.text};
 
@@ -135,7 +236,8 @@ class _NotesState extends State<Notes> {
     String jwt = box.get('auth_status');
 
     var response = await http.post(
-        Uri.parse('http://notes-backend-service.herokuapp.com/notes'),
+        Uri.parse(
+            'http://notes-backend-service.herokuapp.com/notes?sort_by_update_time=$isReverse'),
         headers: {
           "Accept": "*/*",
           "Content-Type": "application/json",
@@ -165,17 +267,49 @@ class _NotesState extends State<Notes> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.3, vertical: height * 0.01),
+                  horizontal: width * 0.25, vertical: height * 0.01),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15)),
                   hintText: 'Search',
                   contentPadding: const EdgeInsets.all(25.0),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.search),
-                    //TODO: Search functionality
-                    onPressed: () {},
+                  suffixIcon: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MaterialButton(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical:
+                                  MediaQuery.of(context).size.height * 0.02,
+                              horizontal:
+                                  MediaQuery.of(context).size.height * 0.03),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color(0xFF44527F),
+                          ),
+                          child: const Text(
+                            'Rearrange!',
+                            style: TextStyle(
+                                fontSize: 22,
+                                letterSpacing: 1.8,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            isReverse == 'true'
+                                ? isReverse = 'false'
+                                : isReverse = 'true';
+                          });
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.search),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -198,7 +332,12 @@ class _NotesState extends State<Notes> {
                               mainAxisSpacing: 2,
                               crossAxisSpacing: 4,
                               itemBuilder: (context, index) {
-                                return NoteCard(data: data, index: index);
+                                return InkWell(
+                                    onTap: () async {
+                                      await _showUpdateDeleteNoteDialog(
+                                          data[index]);
+                                    },
+                                    child: NoteCard(data: data, index: index));
                               },
                             ),
                           );
@@ -212,7 +351,12 @@ class _NotesState extends State<Notes> {
                               mainAxisSpacing: 4,
                               crossAxisSpacing: 10,
                               itemBuilder: (context, index) {
-                                return NoteCard(data: data, index: index);
+                                return InkWell(
+                                    onTap: () async {
+                                      await _showUpdateDeleteNoteDialog(
+                                          data[index]);
+                                    },
+                                    child: NoteCard(data: data, index: index));
                               },
                             ),
                           );
@@ -230,7 +374,7 @@ class _NotesState extends State<Notes> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: const Color(0xFF44527F),
           onPressed: () {
-            _showMyDialog();
+            _showAddNoteDialog();
           },
           child: const Icon(Icons.add),
         ));
@@ -260,11 +404,18 @@ class NoteCard extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(data[index].body,
-                  style:
-                      const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
-              Text('\n\nUpdated: ' + data[index].lastUpdtAt + '\nCreated: ' + data[index].crtdAt,
-                  style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+              Text(
+                data[index].body,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                  '\n\nUpdated: ' +
+                      data[index].lastUpdtAt +
+                      '\nCreated: ' +
+                      data[index].crtdAt,
+                  style: const TextStyle(
+                      fontSize: 10, fontWeight: FontWeight.bold)),
             ],
           ),
         ),
